@@ -5,12 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./main.js"></script>
+    <script src="./main.js" defer></script>
     <title>Rock Paper Scissor</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-
+    <!--result section-->
+    <div class="result">
+        <div class="user">
+            <img class="user" src="./images/user-svgrepo-com.svg" alt="">
+            <h1 class="user-name">User</h1>
+            <h1 class="user-score">0</h1>
+        </div>
+        <div class="computer">
+            <img class="computer" src="./images/computer-svgrepo-com.svg" alt="">
+            <h1 class="computer-score">Computer</h1>
+            <h1 class="computer-score">0</h1>
+        </div>
+    </div>
+    <!--options section-->
+    <div class="button-container">
+        <button class="rock"><img class="rock" src="./images/rock-svgrepo-com.svg" alt="rock"></button>
+        <button class="paper"><img class="paper" src="./images/paper-fold-svgrepo-com.svg" alt="paper"></button>
+        <button class="scissor"><img class="scissor" src="./images/scissor-svgrepo-com.svg" alt=""></button>
+    </div>
 </body>
 
 </html>

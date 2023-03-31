@@ -1,0 +1,42 @@
+body {
+  margin-top: 10%;
+  background-color: antiquewhite;
+  font-family: sans-serif;
+}
+
+.result {
+  display: flex;
+  justify-content: space-around;
+}
+
+img.user {
+  width: 100px;
+  height: auto;
+}
+
+img.computer {
+  width: 100px;
+  height: auto;
+}
+
+.button-container {
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+img.rock {
+  width: 100px;
+  height: auto;
+}
+
+img.paper {
+  width: 100px;
+  height: auto;
+}
+
+img.scissor {
+  width: 100px;
+  height: auto;
+}
