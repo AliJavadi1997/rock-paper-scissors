@@ -11,25 +11,29 @@
 </head>
 
 <body>
-    <!--result section-->
+    <header>
+        <h1>Rock Paper and Scissor</h1>
+    </header>
+    <div class="score-board">
+        <div id="user-label" class="badge">User</div>
+        <div id="computer-label" class="badge">Comp</div>
+        <span id="user-score">0</span>:<span id="computer-score">0</span>
+    </div>
     <div class="result">
-        <div class="user">
-            <img class="user" src="./images/user-svgrepo-com.svg" alt="">
-            <h1 class="user-name">User</h1>
-            <h1 class="user-score">0</h1>
+        <p>Paper covers rock. you win!</p>
+    </div>
+    <div class="choices">
+        <div class="choice">
+            <img src="./images/rock.png" alt="rock" id="r">
         </div>
-        <div class="computer">
-            <img class="computer" src="./images/computer-svgrepo-com.svg" alt="">
-            <h1 class="computer-score">Computer</h1>
-            <h1 class="computer-score">0</h1>
+        <div class="choice">
+            <img src="./images/paper.png" alt="paper" id="p">
+        </div>
+        <div class="choice">
+            <img src="./images/scissor.png" alt="scissor" id="s">
         </div>
     </div>
-    <!--options section-->
-    <div class="button-container">
-        <button class="rock"><img class="rock" src="./images/rock-svgrepo-com.svg" alt="rock"></button>
-        <button class="paper"><img class="paper" src="./images/paper-fold-svgrepo-com.svg" alt="paper"></button>
-        <button class="scissor"><img class="scissor" src="./images/scissor-svgrepo-com.svg" alt=""></button>
-    </div>
+    <p id="action-message">make your move</p>
 </body>
 
 </html>
