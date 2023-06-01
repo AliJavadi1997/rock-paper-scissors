@@ -12,19 +12,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f6f7fb;
+  background: #8294c4;
 }
 
 ::selection {
   color: #fff;
-  background-color: #7d2ae8;
+  background-color: #8294c4;
 }
 
 .container {
   padding: 2rem 7rem;
   border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  background: #acb1d6;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
 .result_images {
@@ -69,7 +69,7 @@ body {
 .result {
   text-align: center;
   font-size: 2rem;
-  color: #7d2ae8;
+  color: #5c469c;
   margin-top: 1.5rem;
 }
 
