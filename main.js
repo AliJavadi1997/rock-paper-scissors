@@ -1,87 +1,71 @@
-"use strict";
+// Get  to DOM elements
+const gameContainer = document.querySelector(".container"),
+  userResult = document.querySelector(".user_result img"),
+  cpuResult = document.querySelector(".cpu_result img"),
+  result = document.querySelector(".result"),
+  optionImages = document.querySelectorAll(".option_image");
 
-const userScore = 0;
-const computerScore = 0;
-const userScore_span = document.getElementById("user-score");
-const computerScore_span = document.getElementById("computer-score");
-const scoreBoard_div = document.querySelector(".score-board");
-const result_p = document.querySelector(".result > p");
-const rock_div = document.getElementById("r");
-const paper_div = document.getElementById("p");
-const scissor_div = document.getElementById("s");
+// Loop through each option image element
+optionImages.forEach((image, index) => {
+  image.addEventListener("click", (e) => {
+    image.classList.add("active");
 
-function getComputerChoice() {
-  const choices = ["r", "p", "s"];
-  const randomNumber = Math.floor(Math.random() * 3);
-  return choices[randomNumber];
-}
+    userResult.src = cpuResult.src = "images/rock.png";
+    result.textContent = "Wait...";
 
-function convertToWord(letter) {
-  if (letter === "r") return "Rock";
-  if (letter === "p") return "Paper";
-  if (letter === "s") return "Scissor";
-}
+    // Loop through each option image again
+    optionImages.forEach((image2, index2) => {
+      // If the current index doesn't match the clicked index
+      // Remove the "active" class from the other option images
+      index !== index2 && image2.classList.remove("active");
+    });
 
-function win(userChoice, computerChoice) {
-  userScore += 1;
-  userScore_span.innerHTML = userScore;
-  computerScore_span.innerHTML = computerScore;
-  const smallUserWord = "user".fontsize(3).sub();
-  const smallCompWord = "computer".fontsize(3).sub();
-  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats
-  ${convertToWord(computerChoice)}${smallCompWord} you win! 🔥`;
-}
+    gameContainer.classList.add("start");
 
-function lose(userChoice, computerChoice) {
-  computerScore += 1;
-  userScore_span.innerHTML = userScore;
-  computerScore_span.innerHTML = computerScore;
-  const smallUserWord = "user".fontsize(3).sub();
-  const smallCompWord = "comp".fontsize(3).sub();
-  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats 
-  ${convertToWord(computerChoice)}${smallCompWord} you lost! ❌`;
-}
+    // Set a timeout to delay the result calculation
+    let time = setTimeout(() => {
+      gameContainer.classList.remove("start");
 
-function draw(userChoice, computerChoice) {
-  const smallUserWord = "user".fontsize(3).sub();
-  const smallCompWord = "comp".fontsize(3).sub();
-  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} equals
-  ${convertToWord(computerChoice)}${smallCompWord} It's a draw! 🏳️`;
-}
+      // Get the source of the clicked option image
+      let imageSrc = e.target.querySelector("img").src;
+      // Set the user image to the clicked option image
+      userResult.src = imageSrc;
 
-function game(userChoice) {
-  const computerChoice = getComputerChoice();
-  switch (userChoice + computerChoice) {
-    case "pr":
-    case "sp":
-    case "rs":
-      win(userChoice, computerChoice);
-      break;
-    case "rp":
-    case "sr":
-    case "ps":
-      lose(userChoice, computerChoice);
-      break;
-    case "rr":
-    case "ss":
-    case "pp":
-      draw(userChoice, computerChoice);
-      break;
-  }
-}
+      // Generate a random number between 0 and 2
+      let randomNumber = Math.floor(Math.random() * 3);
+      // Create an array of CPU image options
+      let cpuImages = [
+        "images/rock.png",
+        "images/paper.png",
+        "images/scissors.png",
+      ];
+      // Set the CPU image to a random option from the array
+      cpuResult.src = cpuImages[randomNumber];
 
-function main() {
-  rock_div.addEventListener("click", function () {
-    game("r");
+      // Assign a letter value to the CPU option (R for rock, P for paper, S for scissors)
+      let cpuValue = ["R", "P", "S"][randomNumber];
+      // Assign a letter value to the clicked option (based on index)
+      let userValue = ["R", "P", "S"][index];
+
+      // Create an object with all possible outcomes
+      let outcomes = {
+        RR: "Draw",
+        RP: "Cpu",
+        RS: "User",
+        PP: "Draw",
+        PR: "User",
+        PS: "Cpu",
+        SS: "Draw",
+        SR: "Cpu",
+        SP: "User",
+      };
+
+      // Look up the outcome value based on user and CPU options
+      let outComeValue = outcomes[userValue + cpuValue];
+
+      // Display the result
+      result.textContent =
+        userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
+    }, 2500);
   });
-
-  paper_div.addEventListener("click", function () {
-    game("p");
-  });
-
-  scissor_div.addEventListener("click", function () {
-    game("s");
-  });
-}
-
-main();
+});
